@@ -1,9 +1,11 @@
 package yuri.dyachenko.materialrecycler01
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import yuri.dyachenko.materialrecycler01.databinding.ActivityMainBinding
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             )
             notesRecyclerView.adapter = adapter
         }
+
+        val typedValue = TypedValue()
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        adapter.itemTitleColor = ContextCompat.getColor(this, typedValue.resourceId)
 
         adapter.setNotes(NoteGenerator.getDefValues())
     }

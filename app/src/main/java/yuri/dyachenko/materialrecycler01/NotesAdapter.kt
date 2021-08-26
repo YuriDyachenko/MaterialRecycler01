@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
     private var notes: MutableList<Note> = mutableListOf()
     private var isSecondItemSelected = false
+    var itemTitleColor: Int? = null
 
     fun setNotes(list: List<Note>) {
         notes.clear()
@@ -52,6 +53,10 @@ class NotesAdapter : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
             itemView.apply {
                 findViewById<TextView>(R.id.notes_item_title).text = note.title
                 findViewById<TextView>(R.id.notes_item_created).text = note.created.toString()
+
+                itemTitleColor?.let {
+                    findViewById<TextView>(R.id.notes_item_title).setTextColor(itemTitleColor!!)
+                }
             }
         }
     }
